@@ -1,0 +1,138 @@
+import time
+
+def verificar_valor(v):
+    try:
+        float(v)
+        return True
+    except:
+        return False
+
+def e(n):
+    print("-"*n)
+
+e(45)
+print("1) Faça um algoritmo para ler o código e o \npreço de 15 produtos, calcular e escrever:")
+time.sleep(0.5)
+print("- O maior preço lido;\n- A média aritmética dos preços dos produtos;\n- O código do produto mais barato.")
+e(45)
+
+time.sleep(1)
+
+produtos = {}
+lista_v = []
+lista_c = []
+codigo = 0
+contador = 0
+cod_m_v = 0
+menor_v = 0
+preco = 0
+
+while contador < 15:
+    codigo = input("Codigo do produto: ").upper().replace(" ","")
+    if codigo != "":
+        if codigo in lista_c:
+            contador = contador - 1
+            print("Codigo ja existente!")
+        else:
+            preco = input("preço: R$ ")
+            if verificar_valor(preco):
+                preco = float(preco)
+                produtos[codigo] = preco
+                lista_c.append(codigo)
+            else:
+                e(45)
+                print("Valor INVALIDO!\nDigite o CODIGO novamente!")
+                contador = contador - 1
+    else:
+        e(45)
+        print("O codigo não pode estar em branco!")
+        contador = contador - 1
+
+    contador = contador +1
+
+for p in produtos:
+    e(45)
+    print("Codigo" , p , "valor = R$", produtos[p])
+    time.sleep(0.3)
+
+for m in produtos.values():
+    lista_v.append(m)
+    menor_v = min(lista_v)
+
+for p in produtos:
+    if menor_v == produtos[p]:
+        cod_m_v = p
+
+time.sleep(0.5)
+
+e(45)
+print("O maior preço é:", max(lista_v))
+print("A média dos preços é:", sum(lista_v)/contador)
+print("O codigo do menor preço é:", cod_m_v)
+
+time.sleep(3)
+
+e(50)
+print("2) Ler um vetor Q de 20 posições\n(aceitar somente números positivos)")
+print("Escrever a seguir o valor do maior elemento de Q e\na respectiva poisção que ele ocupa no vetor.")
+e(50)
+
+time.sleep(0.5)
+
+q = []
+contador_2 = 0
+
+while contador_2 < 20:
+    print("Posição (",len(q),")")
+    numero = input("Digite um numero: ")
+    if verificar_valor(numero):
+        numero = float(numero)
+        if numero < 0:
+            print("Apenas numeros positivos!")
+        else:
+            q.append(numero)
+            contador_2 += 1
+    else:
+        print("Não é um numero!")
+
+time.sleep(0.3)
+
+e(50)
+print(f"Maior valor:", max(q),"posição:", q.index(max(q)))
+e(50)
+
+time.sleep(3)
+
+e(70)
+print("3) Escreva um algoritmo que permita a leitura dos nomes de 10 pessoas")
+print("e armazene os nomes lidos em um vetor. Após isto, o algoritmo deve")
+print("permitir a leitura de mais 1 nome qualquer de pessoa e depois escrever")
+print("a msg ACHEI, se o nome estiver entre os 10 nomes lidos anteriormente")
+print("ou NÃO ACHEI caso contrário.")
+e(70)
+
+lista_nomes = []
+contador_3 = 0
+
+time.sleep(1)
+
+while contador_3 < 10:
+    nome = input("Digite um nome: ").upper().replace("  "," ").strip()
+    if nome.isdigit() or nome == "" or nome == " ":
+        print("Não é um nome valido")
+    else:
+        lista_nomes.append(nome)
+        contador_3 += 1
+
+e(70)
+
+procurar = input("Verificar se existe o nome: ").upper()
+
+e(70)
+
+if procurar in lista_nomes:
+    print("ACHEI o nome:", procurar)
+else:
+    print("NÃO ACHEI o nome:", procurar)
+
+time.sleep(3)
